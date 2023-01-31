@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 app.use(express.json())
 var sqlite3 = require('sqlite3');
-var db = new sqlite3.Database('productionregister.db');
+var db = new sqlite3.Database('./productionregister.db');
 db.serialize(function () {
     // Create a table
     db.run("CREATE TABLE IF NOT EXISTS Register (date TEXT PRIMARY KEY, a INTEGER, b INTEGER, c INTEGER, d INTERGER, e INTEGER, productionStart TEXT, productionEnd TEXT)");
@@ -17,7 +17,7 @@ db.close();
 
 app.post('/production/update', (req, res) => {
     console.log("Just got a update production entry request!");
-    let db = new sqlite3.Database('productionregister.db');
+    let db = new sqlite3.Database('./productionregister.db');
   
     let date = req.body.date;
     let a = req.body.a;
@@ -73,7 +73,7 @@ app.all('/production/all', (req, res) => {
 
 app.post('/production/add', (req, res) => {
     console.log("Just got a add production entry request!");
-    let db = new sqlite3.Database('productionregister.db');
+    let db = new sqlite3.Database('./productionregister.db');
   
     let date = req.body.date;
     let a = req.body.a;
@@ -104,7 +104,7 @@ app.post('/production/add', (req, res) => {
 
 app.post('/production/delete', (req, res) => {
     console.log("Just got a delete production entry request!");
-    let db = new sqlite3.Database('productionregister.db');
+    let db = new sqlite3.Database('./productionregister.db');
   
     let date = req.body.date;
 
